@@ -10,12 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var imageView: UIImageView!
     var imagePicker: ImagePicker!
+    
+    lazy var resultImgView: UIImageView = {
+        let v = UIImageView(frame: .zero)
+        v.contentMode = .scaleAspectFit
+        v.isOpaque = true
+        v.backgroundColor = UIColor.white
+        
+        return v
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        view.addSubview(resultImgView)
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     
@@ -24,32 +33,13 @@ class ViewController: UIViewController {
         self.imagePicker.present(from: sender as! UIView)
     }
     
-     //Show alert
-    func showAlert() {
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
 
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
-            self.getImage(fromSourceType: .camera)
-        }))
-        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(action: UIAlertAction) in
-            self.getImage(fromSourceType: .photoLibrary)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    //get image from source type
-    func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
-
+        let width = view.bounds.width
+        let height = view.bounds.height
         
-        //Check is source type available
-        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
-
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-            imagePickerController.sourceType = sourceType
-            self.present(imagePickerController, animated: true, completion: nil)
-        }
+        resultImgView.frame = CGRect(x: 0.0, y: 0.0, width: width, height: ceil(height * 0.8))
     }
 }
 
@@ -57,6 +47,25 @@ class ViewController: UIViewController {
 extension ViewController: ImagePickerDelegate {
 
     func didSelect(image: UIImage?) {
-        // self.imageView.image = image
+        if (image != nil)
+        {
+            // draw contour
+            resultImgView.image = OpenCVWrapper.selectArea(image!)
+            
+            // check with user to see if the image is okay
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Scan Selected Area?", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
+                self.resultImgView.image = OpenCVWrapper.scanDocument(image!)
+            })
+            
+            let cancel = UIAlertAction(title: "No", style: .cancel) { (action) -> Void in
+                self.resultImgView.image = nil
+            }
+            
+            dialogMessage.addAction(ok)
+            dialogMessage.addAction(cancel)
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
     }
 }
