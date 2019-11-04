@@ -2,7 +2,7 @@
 
 An ios app that takes a picture of a paper and crops and straightens it before saving to the device's photo library.
 
-![Original Image](https://github.com/Jushwee/paper-scanner/blob/master/Example%20Images/IMG_0126.HEIC)
+![Original Image](https://github.com/Jushwee/paper-scanner/blob/master/Example%20Images/IMG_0126.jpg)
 ![Image of affected area](https://github.com/Jushwee/paper-scanner/blob/master/Example%20Images/IMG_0127.PNG)
 ![Saving altered photo](https://github.com/Jushwee/paper-scanner/blob/master/Example%20Images/IMG_0129.PNG) 
 ![Saved photo](https://github.com/Jushwee/paper-scanner/blob/master/Example%20Images/IMG_0128.JPG)
