@@ -18,6 +18,13 @@ An ios app that takes a picture of a paper and crops and straightens it before s
 
 Clone repository onto computer and use [Xcode](https://developer.apple.com/xcode/) to open xcode project paper-scanner. Connect ios device to computer and build the project onto said device.
 
+## OCR
+
+Planned Features include:
+- Updated support for more ios devices
+- Cleaner UI
+- Option to export image directly to some apps
+
 ## Support
 
 Please contact me at joshtzeng@gmail.com for any help or questions
