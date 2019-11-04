@@ -18,6 +18,7 @@
 		42B00B732357E71600FE95FB /* paper_scannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B00B722357E71600FE95FB /* paper_scannerTests.swift */; };
 		42B00B7E2357E71600FE95FB /* paper_scannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B00B7D2357E71600FE95FB /* paper_scannerUITests.swift */; };
 		42B00B8C2357E81E00FE95FB /* ImagePickerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B00B8B2357E81E00FE95FB /* ImagePickerClass.swift */; };
+		42FEE443236F9E6600926A91 /* Paper-Scanner Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 42FEE442236F9E6600926A91 /* Paper-Scanner Logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		42B00B7D2357E71600FE95FB /* paper_scannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paper_scannerUITests.swift; sourceTree = "<group>"; };
 		42B00B7F2357E71600FE95FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42B00B8B2357E81E00FE95FB /* ImagePickerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerClass.swift; sourceTree = "<group>"; };
+		42FEE442236F9E6600926A91 /* Paper-Scanner Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Paper-Scanner Logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				42B00B642357E71600FE95FB /* Assets.xcassets */,
 				42B00B662357E71600FE95FB /* LaunchScreen.storyboard */,
 				42B00B692357E71600FE95FB /* Info.plist */,
+				42FEE442236F9E6600926A91 /* Paper-Scanner Logo.png */,
 				42B00B8B2357E81E00FE95FB /* ImagePickerClass.swift */,
 			);
 			path = "paper-scanner";
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B00B682357E71600FE95FB /* LaunchScreen.storyboard in Resources */,
+				42FEE443236F9E6600926A91 /* Paper-Scanner Logo.png in Resources */,
 				42B00B652357E71600FE95FB /* Assets.xcassets in Resources */,
 				42B00B632357E71500FE95FB /* Main.storyboard in Resources */,
 			);

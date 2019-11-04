@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         let width = view.bounds.width
         let height = view.bounds.height
         
-        resultImgView.frame = CGRect(x: 0.0, y: 0.0, width: width, height: ceil(height * 0.8))
+        resultImgView.frame = CGRect(x: ceil(width * 0.05 ), y: ceil(height * 0.07), width: (ceil(width * 0.9)) , height: ceil(height * 0.75))
     }
 }
 
@@ -56,7 +56,9 @@ extension ViewController: ImagePickerDelegate {
             let dialogMessage = UIAlertController(title: "Confirm", message: "Scan Selected Area?", preferredStyle: .alert)
             
             let ok = UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
-                self.resultImgView.image = OpenCVWrapper.scanDocument(image!)
+                let outputImage = OpenCVWrapper.scanDocument(image!)
+                self.resultImgView.image = outputImage
+                UIImageWriteToSavedPhotosAlbum(outputImage, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
             })
             
             let cancel = UIAlertAction(title: "No", style: .cancel) { (action) -> Void in
@@ -66,6 +68,19 @@ extension ViewController: ImagePickerDelegate {
             dialogMessage.addAction(ok)
             dialogMessage.addAction(cancel)
             self.present(dialogMessage, animated: true, completion: nil)
+        }
+    }
+
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
         }
     }
 }
